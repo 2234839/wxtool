@@ -46,6 +46,7 @@ app
   })
   .start({ port: 3098 });
 console.log("服务启动成功，监听 3098");
+console.log(Deno.env.get("wxtoolPath"));
 
 async function redeToJson(reader: Deno.Reader) {
   let res = "";

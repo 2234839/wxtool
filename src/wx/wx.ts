@@ -3,7 +3,8 @@ import { 文件处理 } from "../lib/文件处理.ts";
 export namespace WX {
   // build(`D:/work code/double_matrix/dist/build/mp-weixin`, { pathName: "pages/index/index", query: "is_preview=true" });
   export async function build(options: { projectPath: string; params: { pathName: string; query: string } }) {
-    const cwd = "D:/app2/wxtool/";
+    const cwd = Deno.env.get("wxtoolPath") || "D:/app2/wxtool/";
+
     const p = Deno.run({
       cmd: [
         // "node",
