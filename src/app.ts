@@ -39,14 +39,24 @@ app
     };
     const r = JSON.parse(body) as typeof exp1;
     const res = await WX.编译到指定server(r);
+    console.log(res);
     if (typeof res === "string") {
-      // console.log(res);
+      return res;
     }
-    return res;
+    c.json(res);
+  })
+  .post("/wx_login", async (c) => {
+    return WX.login();
+  })
+  .post("/wx_loginIsIdle", async (c) => {
+    return WX.loginIsIdle();
+  })
+  .post("/env", async (c) => {
+    return c.json(Deno.env.toObject());
   })
   .start({ port: 3098 });
 console.log("服务启动成功，监听 3098");
-console.log(Deno.env.get("wxtoolPath"));
+console.log(Deno.env.get("wxtoolPath"), Deno.args);
 
 async function redeToJson(reader: Deno.Reader) {
   let res = "";
